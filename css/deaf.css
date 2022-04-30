@@ -21,9 +21,139 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
     --font: 'Rubik', sans-serif;
     --background: #f2f2f2;
     --width-container: 1200px;
-    
 }
 
+/* ================
+  * Styles *
+================*/
+body {
+    background: var(--background);
+    font-family: var(--font);
+    font-size: 18px;
+}
+
+p {
+    line-height: 24px;
+}
+
+img {
+    vertical-align: top;
+    width: 100%;
+}
+
+/* ================
+  * Containers *
+================*/
+.container {
+    max-width: 90%;
+    width: var(--width-container);
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 0 40px;
+    margin: 20px auto;
+}
+
+/* ================
+  * Grids *
+================*/
+.grid {
+    display: grid;
+    gap:20px;
+    margin-bottom: 20px;
+}
+
+/*Desktop*/
+.cl-1 { grid-template-columns: repeat(1, 1fr); } 
+.cl-2 { grid-template-columns: repeat(2, 1fr); } 
+.cl-3 { grid-template-columns: repeat(3, 1fr); } 
+.cl-4 { grid-template-columns: repeat(4, 1fr); } 
+.cl-5 { grid-template-columns: repeat(5, 1fr); } 
+.cl-6 { grid-template-columns: repeat(6, 1fr); } 
+.cl-7 { grid-template-columns: repeat(7, 1fr); } 
+.cl-8 { grid-template-columns: repeat(8, 1fr); } 
+.cl-9 { grid-template-columns: repeat(9, 1fr); } 
+.cl-10 { grid-template-columns: repeat(10, 1fr); } 
+.cl-11 { grid-template-columns: repeat(11, 1fr); } 
+.cl-12 { grid-template-columns: repeat(12, 1fr); } 
+
+/*Tablets*/
+@media screen and (max-width: 992px){
+.md-cl-1 { grid-template-columns: repeat(1, 1fr); } 
+.md-cl-2 { grid-template-columns: repeat(2, 1fr); } 
+.md-cl-3 { grid-template-columns: repeat(3, 1fr); } 
+.md-cl-4 { grid-template-columns: repeat(4, 1fr); } 
+.md-cl-5 { grid-template-columns: repeat(5, 1fr); } 
+.md-cl-6 { grid-template-columns: repeat(6, 1fr); } 
+.md-cl-7 { grid-template-columns: repeat(7, 1fr); } 
+.md-cl-8 { grid-template-columns: repeat(8, 1fr); } 
+.md-cl-9 { grid-template-columns: repeat(9, 1fr); } 
+.md-cl-10 { grid-template-columns: repeat(10, 1fr); } 
+.md-cl-11 { grid-template-columns: repeat(11, 1fr); } 
+.md-cl-12 { grid-template-columns: repeat(12, 1fr); } 
+}
+
+/*Mobile*/
+@media screen and (max-width: 576px){
+    .sm-cl-1 { grid-template-columns: repeat(1, 1fr); } 
+    .sm-cl-2 { grid-template-columns: repeat(2, 1fr); } 
+    .sm-cl-3 { grid-template-columns: repeat(3, 1fr); } 
+    .sm-cl-4 { grid-template-columns: repeat(4, 1fr); } 
+    .sm-cl-5 { grid-template-columns: repeat(5, 1fr); } 
+    .sm-cl-6 { grid-template-columns: repeat(6, 1fr); } 
+    .sm-cl-7 { grid-template-columns: repeat(7, 1fr); } 
+    .sm-cl-8 { grid-template-columns: repeat(8, 1fr); } 
+    .sm-cl-9 { grid-template-columns: repeat(9, 1fr); } 
+    .sm-cl-10 { grid-template-columns: repeat(10, 1fr); } 
+    .sm-cl-11 { grid-template-columns: repeat(11, 1fr); } 
+    .sm-cl-12 { grid-template-columns: repeat(12, 1fr); } 
+    }
+
+/* ================
+  * Components *
+================*/
+.card {
+    padding:40px;
+    background:#fff;
+    border-radius: 5px;
+    box-shadow: 6px 6px 16px rgba(209, 205, 199, 0.5), 
+               -6px -6px 16px rgba(255, 255, 255, 0.5);
+}
+
+/* ================
+  * Fonts *
+================*/
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top:0;
+}
+
+.fw-300{
+    font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fs-64 {
+    font-size:64px;
+}
+
+.fs-54 {
+    font-size: 54px;
+}
+
+.fs-44 {
+    font-size: 44px;
+}
 
 
 
