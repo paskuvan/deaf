@@ -255,5 +255,15 @@ form .input:focus {
     transition: .3s ease all;
 }
 
+.dfbtn:hover {
+    background: #001E6C;
+}
 
+.dfbtn-green {
+    background-color: #069A8E;
+}
+
+.dfbtn-green:hover {
+    background-color: #06746a;
+}
 
