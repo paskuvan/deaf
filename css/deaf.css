@@ -267,3 +267,6 @@ form .input:focus {
     background-color: #06746a;
 }
 
+.dfbtn-red {
+    background-color: red;
+}
