@@ -1,87 +1,43 @@
-# 🎧 deaf.css
+# 🧏‍♀️ deaf
 
-**deaf.css** es un framework CSS de bajo nivel inspirado en los principios de diseño de la comunidad sorda, enfocado en la accesibilidad visual, la claridad y la comunicación no verbal.
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 
-A diferencia de otros frameworks, deaf.css prioriza la comprensión visual por sobre el sonido, creando interfaces más inclusivas para personas con discapacidad auditiva… y mejores experiencias para todos.
-
----
-
-## ✨ Filosofía
-
-Diseñar para personas sordas no es limitar, es mejorar.
-
-deaf.css nace desde una idea simple:  
-👉 si una interfaz funciona sin depender del sonido, funciona mejor para todos.
+Un proyecto enfocado en mejorar la **accesibilidad digital para personas sordas**, priorizando la comunicación visual, la claridad y la inclusión en la web.
 
 ---
 
-## 🚀 Características
+## 🚀 Descripción
 
-### 🧩 Clases de utilidad
-Amplio sistema de clases para controlar:
-- Tipografía
-- Espaciado
-- Colores
-- Layout (grid y flex)
-- Componentes visuales
+**deaf** es una iniciativa que busca reducir las barreras de acceso a la información para la comunidad sorda, a través de soluciones digitales accesibles, intuitivas y centradas en el usuario.
+
+Este proyecto se inspira en principios de diseño inclusivo, comunicación no verbal y accesibilidad web moderna.
 
 ---
 
-### ♿ Accesibilidad desde el origen
-Diseñado desde cero con buenas prácticas de accesibilidad:
-- Alto contraste
-- Mejor legibilidad
-- Jerarquía visual clara
-- Apoyo a comunicación no verbal
+## ✨ Características
+
+- 🎨 Diseño centrado en lo visual
+- ♿ Enfoque en accesibilidad (a11y)
+- 🧏‍♂️ Pensado para usuarios sordos y con discapacidad auditiva
+- ⚡ Interfaz clara, simple y comprensible
+- 📱 Responsive (adaptado a distintos dispositivos)
 
 ---
 
-### ⚙️ Extensible
-- Agrega tus propias clases fácilmente  
-- Escala según tu proyecto  
-- Compatible con otros sistemas de diseño  
+## 🛠️ Tecnologías
+
+- HTML5
+- CSS3
+- JavaScript
 
 ---
 
-### ⚡ Ligero
-- Usa solo lo que necesitas  
-- Optimizado para rendimiento  
-- Ideal para proyectos modernos  
+## 📦 Instalación
 
----
-
-### 📚 Documentación clara
-Guías simples y prácticas para comenzar rápido y aprender accesibilidad en el proceso.
-
----
-
-## 💡 ¿Por qué usar deaf.css?
-
-### 🌍 Interfaces más inclusivas
-Construye productos accesibles para personas sordas y mejora la experiencia de todos los usuarios.
-
----
-
-### ⏱️ Desarrollo más rápido
-Evita empezar desde cero reutilizando clases pensadas para UX/UI real.
-
----
-
-### 🎯 Consistencia visual
-Mantén coherencia en diseño, jerarquía y comunicación visual.
-
----
-
-### 📖 Aprendizaje continuo
-Incorpora buenas prácticas de accesibilidad mientras desarrollas.
-
----
-
-## 🧠 Enfoque
-
-deaf.css no es solo un framework…  
-es una forma de diseñar pensando en:
-
-- Visualización clara  
-- Comunicación sin audio  
-- Inclusión real en productos digitales  
+```bash
+git clone https://github.com/paskuvan/deaf.git
+cd deaf
+npm install
+npm run dev
