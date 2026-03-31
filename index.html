@@ -1,27 +1,913 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/deaf.css">
-    <title>Framework of CSS inspired by deafness 🧏</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>deaf.css — CSS Framework for the Deaf Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/deaf.css">
+  <style>
+    :root {
+      --doc-sidebar: 260px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Atkinson Hyperlegible', sans-serif;
+      background: #0A0E1A;
+      color: #E8EAF0;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      background: rgba(10,14,26,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .site-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .site-logo .logo-sign {
+      font-size: 1.5rem;
+    }
+
+    .logo-version {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      background: #1A6EFF;
+      border-radius: 999px;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .header-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .header-links a:hover { color: #fff; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26,110,255,0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(26,110,255,0.15);
+      border: 1px solid rgba(26,110,255,0.3);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6EB5FF;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #1A6EFF, #6EB5FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      background: #1A6EFF;
+      color: #fff;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 2px solid #1A6EFF;
+    }
+
+    .btn-hero-primary:hover {
+      background: #0A4FCC;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26,110,255,0.4);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 2px solid rgba(255,255,255,0.15);
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    /* Install bar */
+    .install-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1.25rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: #6EB5FF;
+      margin-top: 2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .install-bar:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .install-bar .copy-icon {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+    .install-bar:hover .copy-icon { color: #fff; }
+
+    /* Stats */
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat__value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stat__label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    /* Layout docs */
+    .docs-layout {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      gap: 3rem;
+    }
+
+    .docs-sidebar {
+      width: var(--doc-sidebar);
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+      align-self: flex-start;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+
+    .docs-sidebar::-webkit-scrollbar { width: 4px; }
+    .docs-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+    .sidebar-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .sidebar-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 0.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .sidebar-nav {
+      list-style: none;
+    }
+
+    .sidebar-nav a {
+      display: block;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      background: rgba(26,110,255,0.15);
+      color: #6EB5FF;
+    }
+
+    /* Main content */
+    .docs-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .doc-section {
+      margin-bottom: 4rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1A6EFF;
+      margin-bottom: 0.5rem;
+    }
+
+    .doc-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.875rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .doc-section p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      max-width: none;
+    }
+
+    /* Demo card */
+    .demo-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .demo-preview {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .demo-code {
+      padding: 1rem 1.5rem;
+      background: #060910;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #6EB5FF;
+      overflow-x: auto;
+      white-space: pre;
+      line-height: 1.7;
+    }
+
+    /* Override para dark background en alertas */
+    .demo-preview .deaf-alert--success { background: rgba(29,185,84,0.1); color: #4dda8a; border-left-color: #1DB954; }
+    .demo-preview .deaf-alert--warning { background: rgba(245,166,35,0.1); color: #f5c86a; border-left-color: #F5A623; }
+    .demo-preview .deaf-alert--error   { background: rgba(230,57,70,0.1); color: #f07078; border-left-color: #E63946; }
+    .demo-preview .deaf-alert--info    { background: rgba(26,110,255,0.1); color: #6EB5FF; border-left-color: #1A6EFF; }
+
+    /* Buttons demo */
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.875rem;
+    }
+
+    .site-footer a {
+      color: rgba(255,255,255,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .docs-sidebar { display: none; }
+      .hero h1 { font-size: 2.5rem; }
+      .stats-row { gap: 2rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container dfcard">
-        <h1>Title</h1>
-        <h2>Subtitle</h2>
-        <p>Paragraph</p>
-        <h3>title 3</h3>
-        <h4>title 4</h4>
-        <h5>title 5</h5>
-        <h6>title 5</h6>
-        <h6>title 5</h6>
-        <h6>title 5</h6>
-        <h7>title 5</h7>
-         <h7>title 5</h7>
-        <h7>title 5</h7>
-         <h7>title 5</h7>
+
+  <!-- Header -->
+  <header class="site-header">
+    <a href="#" class="site-logo">
+      <span class="logo-sign">🤟</span>
+      deaf.css
+      <span class="logo-version">v1.0</span>
+    </a>
+    <ul class="header-links">
+      <li><a href="#alerts">Alertas</a></li>
+      <li><a href="#buttons">Botones</a></li>
+      <li><a href="#signs">Señas</a></li>
+      <li><a href="https://github.com/tu-usuario/deaf-css" target="_blank">GitHub ↗</a></li>
+    </ul>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-eyebrow">🤟 Open Source · Accesibilidad real</div>
+    <h1>CSS hecho por y para<br><span>la comunidad sorda</span></h1>
+    <p class="hero-sub">
+      Un framework moderno que pone la accesibilidad visual en primer lugar.
+      Alertas sin sonido, subtítulos, embeds de lengua de señas y más.
+    </p>
+    <div class="hero-actions">
+      <a href="#docs" class="btn-hero-primary">📖 Ver documentación</a>
+      <a href="https://github.com/tu-usuario/deaf-css" class="btn-hero-secondary">⭐ GitHub</a>
     </div>
+    <div class="install-bar" onclick="navigator.clipboard.writeText('npm install deaf-css')">
+      <span>npm install deaf-css</span>
+      <span class="copy-icon">📋 copiar</span>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat__value">~18KB</div>
+      <div class="stat__label">Minificado</div>
+    </div>
+    <div class="stat">
+      <div class="stat__value">0</div>
+      <div class="stat__label">Dependencias</div>
+    </div>
+    <div class="stat">
+      <div class="stat__value">100%</div>
+      <div class="stat__label">CSS puro</div>
+    </div>
+    <div class="stat">
+      <div class="stat__value">MIT</div>
+      <div class="stat__label">Licencia</div>
+    </div>
+  </div>
+
+  <!-- Docs -->
+  <div class="docs-layout" id="docs">
+
+    <!-- Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Inicio</div>
+        <ul class="sidebar-nav">
+          <li><a href="#install">Instalación</a></li>
+          <li><a href="#tokens">Tokens</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Accesibilidad</div>
+        <ul class="sidebar-nav">
+          <li><a href="#alerts" class="active">Alertas Visuales</a></li>
+          <li><a href="#toasts">Toasts</a></li>
+          <li><a href="#signs">Embeds de Señas</a></li>
+          <li><a href="#captions">Captions</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Componentes</div>
+        <ul class="sidebar-nav">
+          <li><a href="#buttons">Botones</a></li>
+          <li><a href="#badges">Badges</a></li>
+          <li><a href="#forms">Formularios</a></li>
+          <li><a href="#modal">Modal</a></li>
+          <li><a href="#navbar">Navbar</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Único sordo 🤟</div>
+        <ul class="sidebar-nav">
+          <li><a href="#flashbar">Flashbar</a></li>
+          <li><a href="#high-contrast">Alto Contraste</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Utilidades</div>
+        <ul class="sidebar-nav">
+          <li><a href="#layout">Layout / Flex</a></li>
+          <li><a href="#spacing">Espaciado</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <main class="docs-content">
+
+      <!-- Instalación -->
+      <section class="doc-section" id="install">
+        <div class="section-eyebrow">EMPEZAR</div>
+        <h2>Instalación</h2>
+        <p>Tres formas de usar deaf.css en tu proyecto:</p>
+
+        <div class="demo-card">
+          <div class="demo-code">/* npm */
+npm install deaf-css
+
+/* En tu CSS */
+@import 'deaf-css';
+
+/* CDN (sin instalar nada) */
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/deaf-css/dist/deaf.css"&gt;</div>
+        </div>
+      </section>
+
+      <!-- Alertas Visuales -->
+      <section class="doc-section" id="alerts">
+        <div class="section-eyebrow">ACCESIBILIDAD</div>
+        <h2>Alertas Visuales</h2>
+        <p>El componente más importante del framework. Las alertas siempre combinan icono + color + borde, nunca dependen solo del color para comunicar el estado.</p>
+
+        <div class="demo-card">
+          <div class="demo-preview">
+            <div class="deaf-alert deaf-alert--success">
+              <span class="deaf-alert__icon">✅</span>
+              <div class="deaf-alert__body">
+                <span class="deaf-alert__title">Mensaje enviado</span>
+                Tu formulario fue enviado correctamente.
+              </div>
+            </div>
+            <div class="deaf-alert deaf-alert--warning">
+              <span class="deaf-alert__icon">⚠️</span>
+              <div class="deaf-alert__body">
+                <span class="deaf-alert__title">Atención</span>
+                Verifica los datos antes de continuar.
+              </div>
+            </div>
+            <div class="deaf-alert deaf-alert--error">
+              <span class="deaf-alert__icon">❌</span>
+              <div class="deaf-alert__body">
+                <span class="deaf-alert__title">Error crítico</span>
+                No se pudo conectar al servidor.
+              </div>
+            </div>
+            <div class="deaf-alert deaf-alert--info">
+              <span class="deaf-alert__icon">ℹ️</span>
+              <div class="deaf-alert__body">
+                <span class="deaf-alert__title">Información</span>
+                El sistema estará en mantención el viernes.
+              </div>
+            </div>
+          </div>
+          <div class="demo-code">&lt;div class="deaf-alert deaf-alert--success"&gt;
+  &lt;span class="deaf-alert__icon"&gt;✅&lt;/span&gt;
+  &lt;div class="deaf-alert__body"&gt;
+    &lt;span class="deaf-alert__title"&gt;Mensaje enviado&lt;/span&gt;
+    Tu formulario fue enviado correctamente.
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+        </div>
+
+        <h3 style="color:#fff;margin:1.5rem 0 0.75rem;font-size:1.1rem;">Modificadores de animación</h3>
+        <p>Agrega animaciones visuales para captar atención sin sonido:</p>
+
+        <div class="demo-card">
+          <div class="demo-preview">
+            <div class="deaf-alert deaf-alert--error deaf-alert--flash">
+              <span class="deaf-alert__icon">🔴</span>
+              <div class="deaf-alert__body"><span class="deaf-alert__title">.deaf-alert--flash</span> Parpadea 3 veces para alertas urgentes</div>
+            </div>
+            <div class="deaf-alert deaf-alert--warning deaf-alert--shake">
+              <span class="deaf-alert__icon">⚠️</span>
+              <div class="deaf-alert__body"><span class="deaf-alert__title">.deaf-alert--shake</span> Temblor para errores críticos</div>
+            </div>
+          </div>
+          <div class="demo-code">&lt;!-- Parpadeo urgente --&gt;
+&lt;div class="deaf-alert deaf-alert--error deaf-alert--flash"&gt;...&lt;/div&gt;
+
+&lt;!-- Temblor en error --&gt;
+&lt;div class="deaf-alert deaf-alert--error deaf-alert--shake"&gt;...&lt;/div&gt;
+
+&lt;!-- Pulso continuo --&gt;
+&lt;div class="deaf-alert deaf-alert--error deaf-alert--pulse"&gt;...&lt;/div&gt;</div>
+        </div>
+      </section>
+
+      <!-- Botones -->
+      <section class="doc-section" id="buttons">
+        <div class="section-eyebrow">COMPONENTES</div>
+        <h2>Botones</h2>
+        <p>Todos con foco visible fuerte y feedback visual al hacer clic.</p>
+
+        <div class="demo-card">
+          <div class="demo-preview">
+            <div class="btn-row">
+              <button class="deaf-btn deaf-btn--primary">Primario</button>
+              <button class="deaf-btn deaf-btn--secondary">Secundario</button>
+              <button class="deaf-btn deaf-btn--ghost">Ghost</button>
+              <button class="deaf-btn deaf-btn--danger">Peligro</button>
+            </div>
+            <div class="btn-row">
+              <button class="deaf-btn deaf-btn--primary deaf-btn--sm">Pequeño</button>
+              <button class="deaf-btn deaf-btn--primary">Normal</button>
+              <button class="deaf-btn deaf-btn--primary deaf-btn--lg">Grande</button>
+            </div>
+          </div>
+          <div class="demo-code">&lt;button class="deaf-btn deaf-btn--primary"&gt;Primario&lt;/button&gt;
+&lt;button class="deaf-btn deaf-btn--secondary"&gt;Secundario&lt;/button&gt;
+&lt;button class="deaf-btn deaf-btn--ghost"&gt;Ghost&lt;/button&gt;
+&lt;button class="deaf-btn deaf-btn--danger"&gt;Peligro&lt;/button&gt;
+
+&lt;!-- Tamaños --&gt;
+&lt;button class="deaf-btn deaf-btn--primary deaf-btn--sm"&gt;Pequeño&lt;/button&gt;
+&lt;button class="deaf-btn deaf-btn--primary deaf-btn--lg"&gt;Grande&lt;/button&gt;</div>
+        </div>
+      </section>
+
+      <!-- Badges -->
+      <section class="doc-section" id="badges">
+        <div class="section-eyebrow">COMPONENTES</div>
+        <h2>Badges y Estado</h2>
+        <p>Los badges siempre usan icono + color para que el estado sea claro sin depender únicamente del color.</p>
+
+        <div class="demo-card">
+          <div class="demo-preview" style="flex-direction:row;flex-wrap:wrap;align-items:center;">
+            <span class="deaf-badge deaf-badge--success">✅ Activo</span>
+            <span class="deaf-badge deaf-badge--warning">⚠️ Pendiente</span>
+            <span class="deaf-badge deaf-badge--error">❌ Error</span>
+            <span class="deaf-badge deaf-badge--info">ℹ️ Info</span>
+            <span class="deaf-badge deaf-badge--neutral">— Sin estado</span>
+          </div>
+          <div class="demo-code">&lt;span class="deaf-badge deaf-badge--success"&gt;✅ Activo&lt;/span&gt;
+&lt;span class="deaf-badge deaf-badge--warning"&gt;⚠️ Pendiente&lt;/span&gt;
+&lt;span class="deaf-badge deaf-badge--error"&gt;❌ Error&lt;/span&gt;</div>
+        </div>
+
+        <div class="demo-card">
+          <div class="demo-preview" style="flex-direction:row;gap:1.5rem;flex-wrap:wrap;">
+            <span class="deaf-dot deaf-dot--online" style="color:rgba(255,255,255,0.7)">En línea</span>
+            <span class="deaf-dot deaf-dot--busy" style="color:rgba(255,255,255,0.7)">Ocupado</span>
+            <span class="deaf-dot deaf-dot--away" style="color:rgba(255,255,255,0.7)">Ausente</span>
+            <span class="deaf-dot deaf-dot--offline" style="color:rgba(255,255,255,0.7)">Sin conexión</span>
+          </div>
+          <div class="demo-code">&lt;span class="deaf-dot deaf-dot--online"&gt;En línea&lt;/span&gt;
+&lt;span class="deaf-dot deaf-dot--busy"&gt;Ocupado&lt;/span&gt;
+&lt;span class="deaf-dot deaf-dot--away"&gt;Ausente&lt;/span&gt;
+&lt;span class="deaf-dot deaf-dot--offline"&gt;Sin conexión&lt;/span&gt;</div>
+        </div>
+      </section>
+
+      <!-- Sign embed -->
+      <section class="doc-section" id="signs">
+        <div class="section-eyebrow">ACCESIBILIDAD</div>
+        <h2>Embeds de Lengua de Señas</h2>
+        <p>Componentes para integrar videos en lengua de señas dentro del contenido.</p>
+
+        <div class="demo-card">
+          <div class="demo-preview">
+            <div>
+              <a href="#" class="deaf-sign-inline">
+                <span class="deaf-sign-inline__icon">🤟</span>
+                Ver en LSCh
+              </a>
+            </div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.85rem;">↑ Botón para abrir video de señas inline</div>
+          </div>
+          <div class="demo-code">&lt;!-- Botón inline para abrir video --&gt;
+&lt;a href="#" class="deaf-sign-inline"&gt;
+  &lt;span class="deaf-sign-inline__icon"&gt;🤟&lt;/span&gt;
+  Ver en LSCh
+&lt;/a&gt;
+
+&lt;!-- Widget flotante --&gt;
+&lt;div class="deaf-sign-widget"&gt;
+  &lt;video class="deaf-sign-widget__video" autoplay muted loop&gt;
+    &lt;source src="seña.mp4" type="video/mp4"&gt;
+  &lt;/video&gt;
+  &lt;div class="deaf-sign-widget__label"&gt;🤟 LSCh&lt;/div&gt;
+&lt;/div&gt;</div>
+        </div>
+      </section>
+
+
+      <!-- Forms -->
+      <section class="doc-section" id="forms">
+        <div class="section-eyebrow">COMPONENTES</div>
+        <h2>Formularios</h2>
+        <p>Inputs accesibles con labels siempre visibles, mensajes de error con icono, y validación visual clara.</p>
+        <div class="demo-card">
+          <div class="demo-preview" style="max-width:480px;">
+            <div class="deaf-field">
+              <label class="deaf-label deaf-label--required">Nombre</label>
+              <div class="deaf-input-group">
+                <span class="deaf-input-group__icon">👤</span>
+                <input class="deaf-input" type="text" placeholder="Tu nombre completo">
+              </div>
+            </div>
+            <div class="deaf-field">
+              <label class="deaf-label">Email</label>
+              <input class="deaf-input deaf-input--success" type="email" value="hola@ejemplo.com">
+              <span class="deaf-field-success">✅ Email válido</span>
+            </div>
+            <div class="deaf-field">
+              <label class="deaf-label">Contraseña</label>
+              <input class="deaf-input deaf-input--error" type="password" value="123">
+              <span class="deaf-field-error">❌ Mínimo 8 caracteres</span>
+            </div>
+            <div class="deaf-field">
+              <label class="deaf-toggle">
+                <input type="checkbox">
+                <span class="deaf-toggle__track"></span>
+                Activar notificaciones visuales
+              </label>
+            </div>
+          </div>
+          <div class="demo-code">&lt;div class="deaf-field"&gt;
+  &lt;label class="deaf-label deaf-label--required"&gt;Nombre&lt;/label&gt;
+  &lt;input class="deaf-input" type="text" placeholder="Tu nombre"&gt;
+&lt;/div&gt;
+
+&lt;!-- Con error --&gt;
+&lt;div class="deaf-field"&gt;
+  &lt;input class="deaf-input deaf-input--error" type="password"&gt;
+  &lt;span class="deaf-field-error"&gt;❌ Mínimo 8 caracteres&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Toggle --&gt;
+&lt;label class="deaf-toggle"&gt;
+  &lt;input type="checkbox"&gt;
+  &lt;span class="deaf-toggle__track"&gt;&lt;/span&gt;
+  Notificaciones visuales
+&lt;/label&gt;</div>
+        </div>
+      </section>
+
+      <!-- Modal -->
+      <section class="doc-section" id="modal">
+        <div class="section-eyebrow">COMPONENTES</div>
+        <h2>Modal</h2>
+        <p>Diálogos con animación visual al abrir. La variante <code style="background:rgba(255,255,255,0.1);padding:1px 6px;border-radius:4px">--urgent</code> parpadea para alertas críticas.</p>
+        <div class="demo-card">
+          <div class="demo-preview">
+            <button class="deaf-btn deaf-btn--primary" onclick="document.getElementById('demo-modal').style.display='flex'">
+              Abrir modal
+            </button>
+            <button class="deaf-btn deaf-btn--danger" onclick="document.getElementById('demo-modal-urgent').style.display='flex'">
+              Modal urgente
+            </button>
+          </div>
+          <div class="demo-code">&lt;div class="deaf-modal-overlay"&gt;
+  &lt;div class="deaf-modal"&gt;
+    &lt;div class="deaf-modal__header"&gt;
+      &lt;span class="deaf-modal__title"&gt;ℹ️ Título&lt;/span&gt;
+      &lt;button class="deaf-modal__close"&gt;✕&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="deaf-modal__body"&gt;Contenido...&lt;/div&gt;
+    &lt;div class="deaf-modal__footer"&gt;
+      &lt;button class="deaf-btn deaf-btn--ghost"&gt;Cancelar&lt;/button&gt;
+      &lt;button class="deaf-btn deaf-btn--primary"&gt;Confirmar&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Urgente (parpadea) --&gt;
+&lt;div class="deaf-modal deaf-modal--urgent"&gt;...&lt;/div&gt;</div>
+        </div>
+      </section>
+
+      <!-- Flashbar -->
+      <section class="doc-section" id="flashbar">
+        <div class="section-eyebrow">ÚNICO SORDO 🤟</div>
+        <h2>Flashbar</h2>
+        <p>Barra de alerta fija en la parte superior de la pantalla con animación de parpadeo. Reemplaza alertas sonoras del sistema operativo.</p>
+        <div class="demo-card">
+          <div class="demo-preview">
+            <button class="deaf-btn deaf-btn--danger" onclick="showFlashbar('error')">⚠️ Simular error urgente</button>
+            <button class="deaf-btn deaf-btn--secondary" onclick="showFlashbar('warning')">🔔 Simular advertencia</button>
+            <button class="deaf-btn deaf-btn--ghost" onclick="showFlashbar('success')">✅ Simular éxito</button>
+          </div>
+          <div class="demo-code">&lt;!-- Flashbar de error (parpadea 3 veces) --&gt;
+&lt;div class="deaf-flashbar deaf-flashbar--error"&gt;
+  &lt;div class="deaf-flashbar__content"&gt;
+    &lt;span class="deaf-flashbar__icon"&gt;🚨&lt;/span&gt;
+    &lt;div class="deaf-flashbar__text"&gt;
+      &lt;span class="deaf-flashbar__title"&gt;Conexión perdida&lt;/span&gt;
+      &lt;span class="deaf-flashbar__sub"&gt;Verifica tu red de internet&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button class="deaf-flashbar__close"&gt;✕&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Flash de pantalla completa (emergencia) --&gt;
+&lt;div class="deaf-screen-flash deaf-screen-flash--red"&gt;&lt;/div&gt;</div>
+        </div>
+      </section>
+
+      <!-- Alto Contraste -->
+      <section class="doc-section" id="high-contrast">
+        <div class="section-eyebrow">ÚNICO SORDO 🤟</div>
+        <h2>Alto Contraste</h2>
+        <p>Agrega la clase <code style="background:rgba(255,255,255,0.1);padding:1px 6px;border-radius:4px">.deaf-high-contrast</code> a cualquier contenedor para activar el modo de máximo contraste.</p>
+        <div class="demo-card">
+          <div class="demo-preview">
+            <div class="deaf-high-contrast" style="background:#fff;padding:1.5rem;border-radius:8px;display:flex;flex-direction:column;gap:1rem;">
+              <div class="deaf-alert deaf-alert--error">
+                <span class="deaf-alert__icon">❌</span>
+                <div class="deaf-alert__body"><span class="deaf-alert__title">Error en alto contraste</span> Texto con máxima legibilidad</div>
+              </div>
+              <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                <button class="deaf-btn deaf-btn--primary">Acción principal</button>
+                <button class="deaf-btn deaf-btn--secondary">Secundario</button>
+              </div>
+              <input class="deaf-input" type="text" placeholder="Input alto contraste">
+            </div>
+          </div>
+          <div class="demo-code">&lt;!-- Aplicar a un div, sección, o al body completo --&gt;
+&lt;div class="deaf-high-contrast"&gt;
+  ... todo el contenido aquí tendrá máximo contraste
+&lt;/div&gt;
+
+&lt;!-- O activar globalmente --&gt;
+&lt;body class="deaf-high-contrast"&gt;
+
+&lt;!-- Botón de toggle --&gt;
+&lt;button class="deaf-contrast-toggle" onclick="toggleContrast()"&gt;
+  🔲 Alto contraste
+&lt;/button&gt;</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>🤟 <strong>deaf.css</strong> — Hecho con ❤️ para la comunidad sorda · 
+      <a href="https://github.com/tu-usuario/deaf-css">GitHub</a> · 
+      Licencia MIT
+    </p>
+  </footer>
+
+
+  <script>
+    // Demo modals
+    document.addEventListener('click', e => {
+      if (e.target.classList.contains('deaf-modal__close') || e.target.classList.contains('deaf-modal-overlay')) {
+        document.querySelectorAll('.deaf-modal-overlay').forEach(m => m.style.display = 'none');
+      }
+    });
+
+    function showFlashbar(type) {
+      const existing = document.querySelector('.deaf-flashbar-demo');
+      if (existing) existing.remove();
+
+      const map = {
+        error:   { icon: '🚨', title: 'Conexión perdida', sub: 'Verifica tu red de internet', cls: 'deaf-flashbar--error' },
+        warning: { icon: '⚠️', title: 'Sesión por expirar', sub: 'Guarda tu trabajo', cls: 'deaf-flashbar--warning' },
+        success: { icon: '✅', title: 'Guardado correctamente', sub: 'Todos los cambios fueron aplicados', cls: 'deaf-flashbar--success' },
+      };
+      const d = map[type];
+      const el = document.createElement('div');
+      el.className = `deaf-flashbar ${d.cls} deaf-flashbar-demo`;
+      el.innerHTML = `
+        <div class="deaf-flashbar__content">
+          <span class="deaf-flashbar__icon">${d.icon}</span>
+          <div class="deaf-flashbar__text">
+            <span class="deaf-flashbar__title">${d.title}</span>
+            <span class="deaf-flashbar__sub">${d.sub}</span>
+          </div>
+        </div>
+        <button class="deaf-flashbar__close" onclick="this.parentElement.remove()">✕</button>
+      `;
+      document.body.prepend(el);
+      setTimeout(() => el.remove(), 5000);
+    }
+  </script>
+
+  <!-- Demo modals -->
+  <div class="deaf-modal-overlay" id="demo-modal" style="display:none">
+    <div class="deaf-modal">
+      <div class="deaf-modal__header">
+        <span class="deaf-modal__title">ℹ️ Confirmar acción</span>
+        <button class="deaf-modal__close" onclick="document.getElementById('demo-modal').style.display='none'">✕</button>
+      </div>
+      <div class="deaf-modal__body">
+        <p>¿Estás segura de que quieres continuar? Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="deaf-modal__footer">
+        <button class="deaf-btn deaf-btn--ghost" onclick="document.getElementById('demo-modal').style.display='none'">Cancelar</button>
+        <button class="deaf-btn deaf-btn--primary">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="deaf-modal-overlay" id="demo-modal-urgent" style="display:none">
+    <div class="deaf-modal deaf-modal--urgent">
+      <div class="deaf-modal__header">
+        <span class="deaf-modal__title">🚨 Error crítico</span>
+        <button class="deaf-modal__close" onclick="document.getElementById('demo-modal-urgent').style.display='none'">✕</button>
+      </div>
+      <div class="deaf-modal__body">
+        <p>Se detectó un problema grave en el sistema. Guarda tu trabajo y recarga la página.</p>
+      </div>
+      <div class="deaf-modal__footer">
+        <button class="deaf-btn deaf-btn--danger">Recargar ahora</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
