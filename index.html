@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>deaf.css — CSS Framework for the Deaf Community</title>
+  <title>Deaf.css — CSS Framework para la comunidad sorda</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../dist/deaf.css">
+  <link rel="stylesheet" href="dist/deaf.css">
   <style>
     :root {
       --doc-sidebar: 260px;
@@ -386,10 +386,220 @@
       color: rgba(255,255,255,0.5);
     }
 
+    /* ====== THEME TOGGLE ====== */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .theme-toggle:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+    /* ====== HAMBURGER ====== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ====== MOBILE NAV ====== */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 98;
+      background: rgba(10,14,26,0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.75rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: #6EB5FF; }
+
+    /* ====== GRID ====== */
+    .grid-demo {
+      display: grid;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .grid-demo.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-demo.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-demo.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-demo.auto  { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+    .grid-cell {
+      background: rgba(26,110,255,0.12);
+      border: 1px solid rgba(26,110,255,0.3);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      color: #6EB5FF;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .grid-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ====== CARDS ====== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .deaf-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .deaf-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    }
+    .deaf-card__img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+    .deaf-card__img--blue { background: linear-gradient(135deg, rgba(26,110,255,0.25), rgba(110,181,255,0.1)); }
+    .deaf-card__img--green { background: linear-gradient(135deg, rgba(29,185,84,0.2), rgba(77,218,138,0.08)); }
+    .deaf-card__img--red { background: linear-gradient(135deg, rgba(230,57,70,0.2), rgba(240,112,120,0.08)); }
+    .deaf-card__body { padding: 1.25rem; }
+    .deaf-card__title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+    .deaf-card__text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+    .deaf-card__footer {
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* ====== LIGHT MODE ====== */
+    body.light-mode {
+      background: #F4F6FA;
+      color: #1A1D2E;
+    }
+    body.light-mode .site-header {
+      background: rgba(244,246,250,0.95);
+      border-bottom-color: rgba(0,0,0,0.1);
+    }
+    body.light-mode .site-logo { color: #1A1D2E; }
+    body.light-mode .header-links a { color: rgba(0,0,0,0.55); }
+    body.light-mode .header-links a:hover { color: #1A1D2E; }
+    body.light-mode .theme-toggle {
+      background: rgba(0,0,0,0.07);
+      border-color: rgba(0,0,0,0.12);
+      color: rgba(0,0,0,0.65);
+    }
+    body.light-mode .theme-toggle:hover { background: rgba(0,0,0,0.12); color: #1A1D2E; }
+    body.light-mode .hamburger span { background: rgba(0,0,0,0.6); }
+    body.light-mode .hero h1 { color: #1A1D2E; }
+    body.light-mode .hero-sub { color: rgba(0,0,0,0.6); }
+    body.light-mode .btn-hero-secondary {
+      color: rgba(0,0,0,0.7);
+      border-color: rgba(0,0,0,0.2);
+    }
+    body.light-mode .btn-hero-secondary:hover { background: rgba(0,0,0,0.06); color: #1A1D2E; }
+    body.light-mode .install-bar {
+      background: rgba(0,0,0,0.06);
+      border-color: rgba(0,0,0,0.12);
+    }
+    body.light-mode .stats-row { border-color: rgba(0,0,0,0.08); background: transparent; }
+    body.light-mode .stat__value { color: #1A1D2E; }
+    body.light-mode .stat__label { color: rgba(0,0,0,0.45); }
+    body.light-mode .sidebar-label { color: rgba(0,0,0,0.35); }
+    body.light-mode .sidebar-nav a { color: rgba(0,0,0,0.55); }
+    body.light-mode .sidebar-nav a:hover,
+    body.light-mode .sidebar-nav a.active { background: rgba(26,110,255,0.1); color: #1A6EFF; }
+    body.light-mode .section-eyebrow { color: #1A6EFF; }
+    body.light-mode .doc-section h2 { color: #1A1D2E; }
+    body.light-mode .doc-section p { color: rgba(0,0,0,0.65); }
+    body.light-mode .demo-card {
+      background: #fff;
+      border-color: rgba(0,0,0,0.1);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    body.light-mode .demo-preview { background: #F8F9FC; }
+    body.light-mode .demo-code { background: #EEF0F5; border-top-color: rgba(0,0,0,0.08); color: #1A6EFF; }
+    body.light-mode .site-footer { border-top-color: rgba(0,0,0,0.08); color: rgba(0,0,0,0.4); }
+    body.light-mode .site-footer a { color: rgba(0,0,0,0.55); }
+    body.light-mode .deaf-card { background: #fff; border-color: rgba(0,0,0,0.1); }
+    body.light-mode .deaf-card__title { color: #1A1D2E; }
+    body.light-mode .deaf-card__text { color: rgba(0,0,0,0.55); }
+    body.light-mode .deaf-card__footer { border-top-color: rgba(0,0,0,0.1); }
+    body.light-mode .grid-cell { background: rgba(26,110,255,0.08); border-color: rgba(26,110,255,0.25); }
+    body.light-mode .grid-label { color: rgba(0,0,0,0.4); }
+    body.light-mode .mobile-nav { background: rgba(244,246,250,0.99); }
+    body.light-mode .mobile-nav a { color: rgba(0,0,0,0.75); }
+    body.light-mode .mobile-nav a:hover { color: #1A6EFF; }
+
     @media (max-width: 768px) {
+      .header-links { display: none; }
+      .hamburger { display: flex; }
       .docs-sidebar { display: none; }
       .hero h1 { font-size: 2.5rem; }
       .stats-row { gap: 2rem; }
+      .grid-demo.cols-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-demo.cols-3 { grid-template-columns: repeat(2, 1fr); }
+      .cards-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -405,10 +615,29 @@
     <ul class="header-links">
       <li><a href="#alerts">Alertas</a></li>
       <li><a href="#buttons">Botones</a></li>
+      <li><a href="#grid">Grid</a></li>
+      <li><a href="#cards">Cards</a></li>
       <li><a href="#signs">Señas</a></li>
-      <li><a href="https://github.com/tu-usuario/deaf-css" target="_blank">GitHub ↗</a></li>
+      <li><a href="https://github.com/paskuvan/deaf" target="_blank">GitHub ↗</a></li>
     </ul>
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">🌙 Oscuro</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="#alerts" onclick="closeMobileNav()">Alertas</a>
+    <a href="#buttons" onclick="closeMobileNav()">Botones</a>
+    <a href="#grid" onclick="closeMobileNav()">Grid</a>
+    <a href="#cards" onclick="closeMobileNav()">Cards</a>
+    <a href="#signs" onclick="closeMobileNav()">Señas</a>
+    <a href="#flashbar" onclick="closeMobileNav()">Flashbar</a>
+    <a href="https://github.com/paskuvan/deaf" target="_blank">GitHub ↗</a>
+  </nav>
 
   <!-- Hero -->
   <section class="hero">
@@ -419,8 +648,7 @@
       Alertas sin sonido, subtítulos, embeds de lengua de señas y más.
     </p>
     <div class="hero-actions">
-      <a href="#docs" class="btn-hero-primary">📖 Ver documentación</a>
-      <a href="https://github.com/tu-usuario/deaf-css" class="btn-hero-secondary">⭐ GitHub</a>
+      <a href="https://github.com/paskuvan/deaf" class="btn-hero-secondary">⭐ GitHub</a>
     </div>
     <div class="install-bar" onclick="navigator.clipboard.writeText('npm install deaf-css')">
       <span>npm install deaf-css</span>
@@ -484,6 +712,13 @@
         <ul class="sidebar-nav">
           <li><a href="#flashbar">Flashbar</a></li>
           <li><a href="#high-contrast">Alto Contraste</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Layout</div>
+        <ul class="sidebar-nav">
+          <li><a href="#grid">Grid / Columnas</a></li>
+          <li><a href="#cards">Cards</a></li>
         </ul>
       </div>
       <div class="sidebar-section">
@@ -831,19 +1066,151 @@ npm install deaf-css
         </div>
       </section>
 
+      <!-- Grid -->
+      <section class="doc-section" id="grid">
+        <div class="section-eyebrow">LAYOUT</div>
+        <h2>Grid / Columnas</h2>
+        <p>Sistema de grillas responsivo con CSS Grid. Combina <code style="background:rgba(255,255,255,0.1);padding:1px 6px;border-radius:4px">.deaf-grid</code> con modificadores de columnas para layouts fluidos.</p>
+
+        <div class="demo-card">
+          <div class="demo-preview">
+            <div class="grid-label">2 columnas</div>
+            <div class="grid-demo cols-2">
+              <div class="grid-cell">Col 1</div>
+              <div class="grid-cell">Col 2</div>
+            </div>
+            <div class="grid-label">3 columnas</div>
+            <div class="grid-demo cols-3">
+              <div class="grid-cell">Col 1</div>
+              <div class="grid-cell">Col 2</div>
+              <div class="grid-cell">Col 3</div>
+            </div>
+            <div class="grid-label">4 columnas</div>
+            <div class="grid-demo cols-4">
+              <div class="grid-cell">Col 1</div>
+              <div class="grid-cell">Col 2</div>
+              <div class="grid-cell">Col 3</div>
+              <div class="grid-cell">Col 4</div>
+            </div>
+            <div class="grid-label">Auto-fit (responsivo)</div>
+            <div class="grid-demo auto">
+              <div class="grid-cell">Auto</div>
+              <div class="grid-cell">Auto</div>
+              <div class="grid-cell">Auto</div>
+              <div class="grid-cell">Auto</div>
+              <div class="grid-cell">Auto</div>
+            </div>
+          </div>
+          <div class="demo-code">&lt;!-- 2 columnas --&gt;
+&lt;div class="deaf-grid deaf-grid--2"&gt;
+  &lt;div&gt;Col 1&lt;/div&gt;
+  &lt;div&gt;Col 2&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 3 columnas --&gt;
+&lt;div class="deaf-grid deaf-grid--3"&gt;...&lt;/div&gt;
+
+&lt;!-- 4 columnas --&gt;
+&lt;div class="deaf-grid deaf-grid--4"&gt;...&lt;/div&gt;
+
+&lt;!-- Auto-fit responsivo (min 140px por columna) --&gt;
+&lt;div class="deaf-grid deaf-grid--auto"&gt;...&lt;/div&gt;</div>
+        </div>
+      </section>
+
+      <!-- Cards -->
+      <section class="doc-section" id="cards">
+        <div class="section-eyebrow">COMPONENTES</div>
+        <h2>Cards</h2>
+        <p>Tarjetas con hover animado, imagen, cuerpo y footer. Se adaptan automáticamente al número de columnas disponibles.</p>
+
+        <div class="demo-card">
+          <div class="demo-preview">
+            <div class="cards-grid">
+              <div class="deaf-card">
+                <div class="deaf-card__img deaf-card__img--blue">🤟</div>
+                <div class="deaf-card__body">
+                  <div class="deaf-card__title">Lengua de Señas</div>
+                  <p class="deaf-card__text">Integra videos LSCh directamente en tu interfaz con un solo componente.</p>
+                </div>
+                <div class="deaf-card__footer">
+                  <span class="deaf-badge deaf-badge--info">ℹ️ Nuevo</span>
+                  <a href="#signs" class="deaf-btn deaf-btn--ghost deaf-btn--sm">Ver más</a>
+                </div>
+              </div>
+              <div class="deaf-card">
+                <div class="deaf-card__img deaf-card__img--green">✅</div>
+                <div class="deaf-card__body">
+                  <div class="deaf-card__title">Alertas Visuales</div>
+                  <p class="deaf-card__text">Nunca dependas solo del sonido para comunicar estados importantes.</p>
+                </div>
+                <div class="deaf-card__footer">
+                  <span class="deaf-badge deaf-badge--success">✅ Estable</span>
+                  <a href="#alerts" class="deaf-btn deaf-btn--ghost deaf-btn--sm">Ver más</a>
+                </div>
+              </div>
+              <div class="deaf-card">
+                <div class="deaf-card__img deaf-card__img--red">🚨</div>
+                <div class="deaf-card__body">
+                  <div class="deaf-card__title">Flashbar Urgente</div>
+                  <p class="deaf-card__text">Reemplaza alertas sonoras con animaciones de parpadeo y vibración visual.</p>
+                </div>
+                <div class="deaf-card__footer">
+                  <span class="deaf-badge deaf-badge--warning">⚠️ Beta</span>
+                  <a href="#flashbar" class="deaf-btn deaf-btn--ghost deaf-btn--sm">Ver más</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-code">&lt;div class="deaf-card"&gt;
+  &lt;div class="deaf-card__img deaf-card__img--blue"&gt;🤟&lt;/div&gt;
+  &lt;div class="deaf-card__body"&gt;
+    &lt;div class="deaf-card__title"&gt;Título&lt;/div&gt;
+    &lt;p class="deaf-card__text"&gt;Descripción...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="deaf-card__footer"&gt;
+    &lt;span class="deaf-badge deaf-badge--info"&gt;ℹ️ Nuevo&lt;/span&gt;
+    &lt;a href="#" class="deaf-btn deaf-btn--ghost deaf-btn--sm"&gt;Ver más&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+        </div>
+      </section>
+
     </main>
   </div>
 
   <!-- Footer -->
   <footer class="site-footer">
     <p>🤟 <strong>deaf.css</strong> — Hecho con ❤️ para la comunidad sorda · 
-      <a href="https://github.com/tu-usuario/deaf-css">GitHub</a> · 
+      <a href="https://github.com/paskuvan/deaf">GitHub</a> · 
       Licencia MIT
     </p>
   </footer>
 
 
   <script>
+    // Theme toggle
+    function toggleTheme() {
+      const body = document.body;
+      const btn = document.getElementById('theme-toggle');
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+      btn.textContent = isLight ? '🌑 Oscuro' : '🌙 Oscuro';
+      btn.innerHTML = isLight ? '☀️ Claro' : '🌙 Oscuro';
+    }
+
+    // Mobile nav
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobile-nav');
+      const btn = document.getElementById('hamburger');
+      nav.classList.toggle('open');
+      btn.classList.toggle('open');
+    }
+    function closeMobileNav() {
+      document.getElementById('mobile-nav').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+
     // Demo modals
     document.addEventListener('click', e => {
       if (e.target.classList.contains('deaf-modal__close') || e.target.classList.contains('deaf-modal-overlay')) {

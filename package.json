@@ -1,0 +1,13 @@
+{
+  "name": "deaf-css",
+  "version": "1.0.0",
+  "description": "Deaf.css — CSS Framework para la comunidad sorda",
+  "main": "dist/deaf.css",
+  "style": "dist/deaf.css",
+  "license": "MIT",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ]
+}
